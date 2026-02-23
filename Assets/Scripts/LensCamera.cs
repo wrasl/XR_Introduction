@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class LensCamera : MonoBehaviour
 {
-    
-    public Transform playerCamera;
+    public Camera mainCamera;
+    public Camera magCamera;
 
-    void Update()
+    void LateUpdate()
     {
-        transform.rotation = playerCamera.rotation;
+        if (!mainCamera || !magCamera) return;
+
+        magCamera.transform.position = transform.position;
+        magCamera.transform.rotation = mainCamera.transform.rotation;
     }
 }
